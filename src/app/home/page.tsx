@@ -1,30 +1,38 @@
+import { fetchLocationWeather } from "@/apis/locationApi";
 import DetailWeatherCard from "@/components/detailWeatherCard";
 import PreviewWeatherCard from "@/components/previewWeatherCard";
+import { Weather } from "@/interfaces/weather";
 import { Grid, Stack, Typography } from "@mui/material";
 import { Suspense } from "react";
 
-const defaultWeather: Weather = {
-  location: "London",
-  date: new Date(1,8,2024),
-  wind: 4.31,
-  temp: 18.71,
-  humidity: 0.76,
-  weatherDescription: "Moderate rain",
-  iconUrl: "//cdn.weatherapi.com/weather/64x64/day/116.png",
-};
-export default function Page() {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const locationUrl = searchParams.location
+  var location = null
+  if(!locationUrl || !(typeof(locationUrl) === 'string'))
+    return <Typography variant="h5" textAlign={'center'}>You haven't selected a location.</Typography>
   return (
     <Stack spacing={3}>
       <Suspense>
-        <DetailWeatherCard weather={defaultWeather} />
+        <DetailWeatherCard location={locationUrl}/>
       </Suspense>
       <Typography variant="h4" fontWeight={500}>
         4-Day Forecast
       </Typography>
-      <Grid container gridColumn={{ xs: 2, md: 4 }} columnSpacing={2} width={"fit-content"}>
+      <Grid
+        container
+        gridColumn={{ xs: 2, md: 4 }}
+        columnSpacing={2}
+        width={"fit-content"}
+      >
         {Array.from(Array(4).keys()).map((element) => (
           <Grid item xs>
-            <PreviewWeatherCard weather={defaultWeather} />
+            {/* <PreviewWeatherCard weather={defaultWeather} /> */}
           </Grid>
         ))}
       </Grid>

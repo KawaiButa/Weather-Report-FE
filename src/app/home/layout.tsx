@@ -1,4 +1,5 @@
 import CityButton from "@/components/cityButton";
+import CityTextField from "@/components/cityTextField";
 import LocationButton from "@/components/locationButton";
 import {
   AppBar,
@@ -60,15 +61,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         >
           <Typography variant="h6">Enter a City name</Typography>
           <Suspense>
-            <TextField
-              placeholder="E.g., New York, London, Tokyo"
-              variant="outlined"
-              color="secondary"
-              sx={{
-                backgroundColor: "white",
-                width: "100%",
-              }}
-            />
+           <CityTextField/>
           </Suspense>
           <CityButton />
           <Divider>or</Divider>
