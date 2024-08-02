@@ -1,30 +1,32 @@
 "use client";
+import { Forecast, ForecastDay } from "@/interfaces/forecast";
 import { Card, CardContent, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import moment from "moment";
 
-const PreviewWeatherCard = ({ weather }: { weather: Weather }) => {
+const PreviewWeatherCard = ({ forecastDay }: { forecastDay: ForecastDay }) => {
   return (
     <Card
       sx={{
         backgroundColor: grey[600],
         color: "#fff",
         maxWidth: "200px",
-        "&hover": {},
+        "&:hover": { backgroundColor: grey[800] },
+        cursor: "pointer"
       }}
     >
       <CardContent>
         <Typography variant="h6" sx={{ marginBottom: 1 }}>
-          ( {moment(weather.date).format("YYYY-MM-DD")})
+          ( {moment(forecastDay.date).format("YYYY-MM-DD")})
         </Typography>
-        <img src={weather.iconUrl} />
+        <img src={forecastDay.day.condition.icon} />
         <Typography sx={{ marginBottom: 1 }}>
-          Temperature: {weather.temp}°C
+          Temperature: {forecastDay.day.avgtemp_c}°C
         </Typography>
         <Typography sx={{ marginBottom: 1 }}>
-          Wind: {weather.wind} M/S
+          Wind: {forecastDay.day.maxwind_kph} M/S
         </Typography>
-        <Typography>Humidity: {weather.humidity}%</Typography>
+        <Typography>Humidity: {forecastDay.day.avghumidity}%</Typography>
       </CardContent>
     </Card>
   );

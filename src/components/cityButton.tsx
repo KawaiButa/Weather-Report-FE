@@ -9,7 +9,7 @@ const CityButton = () => {
   function getLocationWeather() {
     const selectedLocation = localStorage.getItem("location");
     if (selectedLocation)
-      window.location.replace(
+      router.replace(
         `/home?location=${(JSON.parse(selectedLocation) as Location).url}`
       );
   }

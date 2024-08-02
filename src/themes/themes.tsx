@@ -1,7 +1,7 @@
 'use client';
 import { Roboto, Rubik } from 'next/font/google';
 import {grey} from "@mui/material/colors"
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 const rubik = Rubik({
   weight: ['300', '400', '500', '700'],
@@ -22,5 +22,4 @@ const theme = createTheme({
     }
   }
 });
-
 export default theme;
