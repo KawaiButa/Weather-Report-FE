@@ -36,7 +36,7 @@ export default async function Page({
       <Typography variant="h4" fontWeight={500}>
         4-Day Forecast
       </Typography>
-      <ForecastGrid location={locationUrl} />
+      <ForecastGrid forecastDay={forecast.forecast.forecastday.slice(1)} />
     </Stack>
   );
 }
