@@ -9,7 +9,7 @@ const variants = {
   enter: { opacity: 1, x: 20, y: 0 },
 };
 async function ForecastGrid({ forecastDay }: { forecastDay: ForecastDay[] }) {
-
+  console.log(forecastDay.length)
   return (
     <motion.div
       variants={variants}
@@ -20,7 +20,7 @@ async function ForecastGrid({ forecastDay }: { forecastDay: ForecastDay[] }) {
       <Grid
         container
         gridColumn={{ xs: 2, md: 4 }}
-        columnSpacing={2}
+        spacing={2}
         width={"100%"}
       >
         {forecastDay.map((element) => (

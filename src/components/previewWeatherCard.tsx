@@ -13,7 +13,8 @@ const PreviewWeatherCard = ({ forecastDay }: { forecastDay: ForecastDay }) => {
         maxWidth: "200px",
         "&:hover": { backgroundColor: grey[800] },
         cursor: "pointer",
-        marginRight: 2
+        marginRight: 2,
+        marginTop: 2
       }}
     >
       <CardContent>

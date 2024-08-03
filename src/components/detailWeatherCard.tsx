@@ -83,13 +83,15 @@ const DetailWeatherCard = ({
               sx={{
                 width: "100%",
                 maxWidth: "1000px",
+                height: "10rem"
               }}
             >
               <img
                 src={current.condition.icon}
                 alt="Weather Icon"
                 style={{
-                  objectFit: "fill",
+                  objectFit: "contain",
+                  height: "100%"
                 }}
               />
               <Typography variant="h6" textAlign={"center"}>

@@ -1,8 +1,14 @@
 import { fetchLocationForecast } from "@/apis/locationApi";
 import DetailWeatherCard from "@/components/detailWeatherCard";
 import ForecastGrid from "@/components/forecastGrid";
-import { CircularProgress, Grid, Stack, Typography } from "@mui/material";
-import { Suspense } from "react";
+import {
+  CircularProgress,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
+import Link from "next/link";
 
 export default async function Page({
   params,
@@ -12,14 +18,20 @@ export default async function Page({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const locationUrl = searchParams.location;
-  var location = null;
+  const day = Number.parseInt(searchParams.days as string);
+  const loadMoreUrl = `/home?location=${searchParams.location}&days=${
+    isNaN(day) ? 8 : day + 4 < 15 ? day + 4 : 15
+  }`;
   if (!locationUrl || !(typeof locationUrl === "string"))
     return (
       <Typography variant="h5" textAlign={"center"}>
         You haven't selected a location.
       </Typography>
     );
-  const forecast = await fetchLocationForecast(locationUrl, 4);
+  const forecast = await fetchLocationForecast(
+    locationUrl,
+    isNaN(day) ? 5 : day
+  );
   if (!forecast)
     return (
       <Typography variant="h5" textAlign={"center"}>
@@ -33,9 +45,20 @@ export default async function Page({
         current={forecast?.current}
         forecast={forecast.forecast.forecastday[0]}
       />
-      <Typography variant="h4" fontWeight={500}>
-        4-Day Forecast
-      </Typography>
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          alignItems: "center",
+        }}
+      >
+        <Typography variant="h4" fontWeight={500}>
+          4-Day Forecast
+        </Typography>
+        <Link href={loadMoreUrl}> Load more</Link>
+      </Container>
       <ForecastGrid forecastDay={forecast.forecast.forecastday.slice(1)} />
     </Stack>
   );
