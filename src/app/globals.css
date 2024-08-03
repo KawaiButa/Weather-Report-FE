@@ -25,21 +25,3 @@ body {
     text-wrap: balance;
   }
 }
-
-.animate-container {
-  overflow: hidden;
-  height: fit-content;
-  width: 100%;
-  max-width: 1000px;
-  max-height: 0rem;
-  transition-property: max-height;
-  transition-duration: 5s;
-}
-
-.open {
-  max-height: 6rem;
-}
-
-.hidden {
-  max-height: 0rem
-}

@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default async function Page({
   params,
@@ -40,11 +41,13 @@ export default async function Page({
     );
   return (
     <Stack spacing={3}>
-      <DetailWeatherCard
-        location={forecast.location}
-        current={forecast?.current}
-        forecast={forecast.forecast.forecastday[0]}
-      />
+      <Suspense>
+        <DetailWeatherCard
+          location={forecast.location}
+          current={forecast?.current}
+          forecast={forecast.forecast.forecastday[0]}
+        />
+      </Suspense>
       <Container
         sx={{
           display: "flex",
@@ -55,11 +58,13 @@ export default async function Page({
         }}
       >
         <Typography variant="h4" fontWeight={500}>
-          4-Day Forecast
+          {isNaN(day)? 4: day}-Day Forecast
         </Typography>
         <Link href={loadMoreUrl}> Load more</Link>
       </Container>
-      <ForecastGrid forecastDay={forecast.forecast.forecastday.slice(1)} />
+      <Suspense>
+        <ForecastGrid forecastDay={forecast.forecast.forecastday.slice(1)} />
+      </Suspense>
     </Stack>
   );
 }
