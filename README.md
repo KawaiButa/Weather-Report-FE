@@ -28,8 +28,8 @@ Before you begin, ensure you have met the following requirements:
 Clone the repository:
 
 ```
-git clone https://github.com/your-username/weather-report.git
-cd weather-report
+git clone https://github.com/KawaiButa/Weather-Report-FE.git
+cd Weather-Report-FE
 ```
 
 # Install the dependencies:
