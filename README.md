@@ -5,7 +5,8 @@ We deploy the project on vercel for a demo.
 Demo: [here](https://weather-report-dv3vf44qv-nmphaps-projects.vercel.app/)
 
 # Note:
-As the demo backend is host on Render, it will takes 50-70s for the backend server to start running. Therefore, the first time request to the backend will take longer than normal.
+- As the demo backend is host on Render, it will takes 50-70s for the backend server to start running. Therefore, the first time request to the backend will take longer than normal.
+- The FE is using NextJS Server-side rendering. Despite being fast in normal situations than Client-side rendering (the template is pre-built and the API call could be cached in the FE server), the FE client will look like it being frozen when the BE server is starting up,. However this is an issue of NextJS when it is not compatible with exist animation and results in just waiting for the BE before reload the UI. 
 
 # Table of Contents
 1. Features
